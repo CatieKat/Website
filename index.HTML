@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rebels Only</title>
+    <link rel="stylesheet" href="stylesheet.css">
+  </head>
+  <body>
+    <h1>Welcome Members of the Rebel Alliance</h1>
+    <p>Greetings.</p>
+  </body>
+
+  <!-- princess Leia's first part of message-->
+<div class="leia-message">
+  <p>📡 Princess Leia has a message for you</p>
+
+  <!-- video link to Leia's message-->
+  <iframe
+    src="https://www.youtube.com/embed/F2sERCgDESE"
+    title="Princess Leia Message"
+    allowfullscreen>
+  </iframe>
+</div>
+
+
+<!-- login page for Obi Wan-->
+<!-- button to open the modal login form -->
+<button class="login-button" onclick="document.getElementById('id01').style.display='block'">Pssst Obi-Wan, login here!</button>
+
+<!-- The modal -->
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'"
+class="close" title="Close Modal">&times;</span>
+
+  <!-- modal -->
+  <form class="modal-content animate">
+    <div class="imgcontainer">
+      <img src="https://i.pinimg.com/originals/0a/47/98/0a4798fdf4a0cdd2495778cf01b08f6c.jpg" alt="Obi-Wan, is that you?" 
+      width = "200" height = "150"class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="username"><b>Username</b></label>
+      <input type="text" id="username" placeholder="Enter Username" name="username" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" id="password" placeholder="Enter Password" name="psw" required>
+
+      <!--the login button after user enters username and password-->
+      <button type="submit" class="loginbtn">Login</button>
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const form = document.querySelector('form');
+  form.addEventListener('submit', function(event) {
+      event.preventDefault(); // allows redirect with script.js
+
+      // validate username and password
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      if (username === 'TheRealObiWan' && password === 'UseTheForce') {
+          alert('Login successful!');
+      } else {
+          alert('Username or password incorrect. Please try again.');
+      }
+  });
+        
+// get the modal
+var modal = document.getElementById('id01');
+
+
+// when the user clicks anywhere outside of box, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
