@@ -51,6 +51,13 @@ p {
   border: none;
 }
 
+.gallery-title {
+  text-align: center; 
+  font-size: 24px;  
+  margin-bottom: 20px;   
+  color: #FFE81F;           
+}
+
 
 .leia2-message {
   border: 2px solid #FFE81F;
