@@ -3,88 +3,121 @@
   <head>
     <title>Rebels Only</title>
     <link rel="stylesheet" href="stylesheet.css">
+
+    <!--how email verification is sent-->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <script>
+      (function(){
+        emailjs.init("qvlqmp93k-iFHwMTJ"); // my public email key
+      })();
+    </script>
   </head>
+
   <body>
     <h1>Welcome Members of the Rebel Alliance</h1>
     <p>Greetings.</p>
-  </body>
 
-  <!--audio-->
-<audio controls>
-  <source src="theme.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+    <!--audio-->
+    <audio controls>
+      <source src="theme.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
 
-  <!-- princess Leia's first part of message-->
-<div class="leia-message">
-  <p>📡 Princess Leia has a message for you</p>
+    <!-- princess Leia's first part of message-->
+    <div class="leia-message">
+      <p>📡 Princess Leia has a message for you</p>
 
-  <!-- video link to Leia's message-->
-  <iframe
-    video src="message1.mp4"
-    title="Princess Leia Message"
-    allowfullscreen>
-  </iframe>
-</div>
-
-
-<!-- login page for Obi Wan-->
-<!-- button to open the modal login form -->
-<button class="login-button" onclick="document.getElementById('id01').style.display='block'">Pssst Obi-Wan, login here!</button>
-
-<!-- The modal -->
-<div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'"
-class="close" title="Close Modal">&times;</span>
-
-  <!-- modal -->
-  <form class="modal-content animate">
-    <div class="imgcontainer">
-      <img src="https://i.pinimg.com/originals/0a/47/98/0a4798fdf4a0cdd2495778cf01b08f6c.jpg" alt="Obi-Wan, is that you?" 
-      width = "200" height = "150"class="avatar">
+      <!-- video link to Leia's message-->
+      <iframe
+        video src="message1.mp4"
+        title="Princess Leia Message"
+        allowfullscreen>
+      </iframe>
     </div>
 
-    <div class="container">
-      <label for="username"><b>Username</b></label>
-      <input type="text" id="username" placeholder="Enter Username" name="username" required>
+    <!-- login page for Obi Wan-->
+    <!-- button to open the modal login form -->
+    <button class="login-button" onclick="document.getElementById('id01').style.display='block'">Pssst Obi-Wan, login here!</button>
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" id="password" placeholder="Enter Password" name="psw" required>
+    <!-- The modal -->
+    <div id="id01" class="modal">
+      <span onclick="document.getElementById('id01').style.display='none'"
+      class="close" title="Close Modal">&times;</span>
 
-      <!--the login button after user enters username and password-->
-      <button type="submit" class="loginbtn">Login</button>
+      <!-- modal -->
+      <form class="modal-content animate">
+        <div class="imgcontainer">
+          <!--yoda image-->
+          <img src="https://i.pinimg.com/originals/0a/47/98/0a4798fdf4a0cdd2495778cf01b08f6c.jpg" alt="Obi-Wan, is that you?" 
+          width="200" height="150" class="avatar">
+        </div>
 
+        <div class="container">
+          <label for="username"><b>Username</b></label>
+          <input type="text" id="username" placeholder="Enter Username" name="username" required>
+
+          <label for="psw"><b>Password</b></label>
+          <input type="password" id="password" placeholder="Enter Password" name="psw" required>
+
+          <!--email verification -->
+          <div class="verify">
+            <input type="text" id="code" placeholder="Enter code sent to email">
+          </div>
+
+          <button class="btn" id="sendCode">Send Code</button>
+        </div>
+
+        <!--the login button after user enters username, password, and OTP-->
+        <button type="submit" class="loginbtn">Login</button>
+
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        </div>
+      </form>
     </div>
 
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-    </div>
-  </form>
-</div>
+    <script src="email-verify.js"></script>
 
-<script>
-  const form = document.querySelector('form');
-  form.addEventListener('submit', function(event) {
-      event.preventDefault(); // allows redirect with script.js
+    <script>
+      const form = document.querySelector('.modal-content');
 
-      // validate username and password
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      if (username === 'TheRealObiWan' && password === 'UseTheForce') {
-    window.location.href = 'obiwan.html';
-      } else {
-          alert('Username or password incorrect. Please try again.');
+      // handle login button
+      form.addEventListener('submit', function(event){
+        event.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const enteredCode = document.getElementById('code').value;
+
+        // check username and the password
+        const usernameCorrect = (username === "TheRealObiWan");
+        const passwordCorrect = (password === "UseTheForce");
+
+        if(!usernameCorrect || !passwordCorrect){
+          alert("Username or password incorrect. Please try again.");
+          return;
+        }
+
+        // check OTP
+        if(enteredCode != window.generatedCode){
+          alert("Incorrect verification code. Check your email and try again.");
+          return;
+        }
+
+        // redirect to second page
+        window.location.href = 'obiwan.html';
+      });
+
+      // get the modal
+      var modal = document.getElementById('id01');
+
+      // when the user clicks anywhere outside of box, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
       }
-  });
-        
-// get the modal
-var modal = document.getElementById('id01');
-
-
-// when the user clicks anywhere outside of box, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
+    </script>
+  </body>
+</html>
