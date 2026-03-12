@@ -1,9 +1,6 @@
-// email-verify.js
-
-// store OTP globally so the login handler can access it
 window.generatedCode = "";
 
-// Send the OTP email
+// sends email for passcode when send code button is clicked
 document.getElementById("sendCode").addEventListener("click", function(e){
     e.preventDefault();
 
@@ -16,7 +13,7 @@ document.getElementById("sendCode").addEventListener("click", function(e){
         return;
     }
 
-  // generate a 6-digit OTP
+  // generates 6-digit OTP
     window.generatedCode = Math.floor(100000 + Math.random() * 900000);
 
   // send email via EmailJS
