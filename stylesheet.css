@@ -27,6 +27,7 @@ p {
   text-align: center;
 }
 
+/* Leia message */
 .leia-message {
   border: 2px solid #FFE81F;
   padding: 20px;
@@ -51,6 +52,7 @@ p {
   border: none;
 }
 
+/* Gallery title */
 .gallery-title {
   text-align: center; 
   font-size: 24px;  
@@ -58,7 +60,42 @@ p {
   color: #FFE81F;           
 }
 
+/* Gallery layout */
+.gallery-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
 
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.gallery-item {
+  width: 300px;
+  text-align: center;
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 0 auto 10px auto;
+  border: 2px solid #FFE81F;
+  box-shadow: 0 0 10px rgba(255, 232, 31, 0.6);
+}
+
+.gallery-caption {
+  color: #ffffff;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* Second Leia message */
 .leia2-message {
   border: 2px solid #FFE81F;
   padding: 20px;
@@ -83,7 +120,7 @@ p {
   border: none;
 }
 
-
+/* Login button */
 .login-button {
   display: block;
   margin: 20px auto;
@@ -101,30 +138,28 @@ p {
 /* login */
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
   padding-top: 60px;
 }
 
 /* Modal Content/Box */
 .modal-content {
   background-color: #000000;
-  margin: 5px auto; /* 15% from the top and centered */
+  margin: 5px auto;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%;
 }
 
-/* The Close Button */
+/* Close Button */
 .close {
-  /* Position it in the top right corner outside of the modal */
   position: absolute;
   right: 25px;
   top: 0;
@@ -133,23 +168,23 @@ p {
   font-weight: bold;
 }
 
-/* Close button on hover */
 .close:hover,
 .close:focus {
   color: red;
   cursor: pointer;
 }
 
+/* Verification iframe */
 .verify iframe {
   text-align: center;
   margin: 0;
   height: 100vh;
 }
 
-/* Add Zoom Animation */
+/* Zoom animation */
 .animate {
   -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
+  animation: animatezoom 0.6s;
 }
 
 @-webkit-keyframes animatezoom {
